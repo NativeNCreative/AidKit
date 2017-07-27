@@ -15,6 +15,7 @@
 		74DFF3D71F2A4FB40059E6C7 /* AidKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3D61F2A4FB40059E6C7 /* AidKitTests.swift */; };
 		74DFF3E21F2A4FB40059E6C7 /* AidKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3E11F2A4FB40059E6C7 /* AidKitUITests.swift */; };
 		74DFF3F01F2A4FCE0059E6C7 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3EF1F2A4FCE0059E6C7 /* Recorder.swift */; };
+		74DFF3F21F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3F11F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		74DFF3E11F2A4FB40059E6C7 /* AidKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AidKitUITests.swift; sourceTree = "<group>"; };
 		74DFF3E31F2A4FB40059E6C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74DFF3EF1F2A4FCE0059E6C7 /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
+		74DFF3F11F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+EventInterceptor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				74DFF3EF1F2A4FCE0059E6C7 /* Recorder.swift */,
+				74DFF3F11F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift */,
 				74DFF3C11F2A4FB40059E6C7 /* AppDelegate.swift */,
 				74DFF3C31F2A4FB40059E6C7 /* ViewController.swift */,
 				74DFF3C51F2A4FB40059E6C7 /* Main.storyboard */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74DFF3F21F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift in Sources */,
 				74DFF3F01F2A4FCE0059E6C7 /* Recorder.swift in Sources */,
 				74DFF3C41F2A4FB40059E6C7 /* ViewController.swift in Sources */,
 				74DFF3C21F2A4FB40059E6C7 /* AppDelegate.swift in Sources */,
@@ -520,6 +524,7 @@
 				74DFF3E81F2A4FB40059E6C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		74DFF3E91F2A4FB40059E6C7 /* Build configuration list for PBXNativeTarget "AidKitTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +533,7 @@
 				74DFF3EB1F2A4FB40059E6C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		74DFF3EC1F2A4FB40059E6C7 /* Build configuration list for PBXNativeTarget "AidKitUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +542,7 @@
 				74DFF3EE1F2A4FB40059E6C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
