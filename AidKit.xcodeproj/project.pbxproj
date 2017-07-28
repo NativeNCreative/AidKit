@@ -16,6 +16,11 @@
 		74DFF3E21F2A4FB40059E6C7 /* AidKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3E11F2A4FB40059E6C7 /* AidKitUITests.swift */; };
 		74DFF3F01F2A4FCE0059E6C7 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3EF1F2A4FCE0059E6C7 /* Recorder.swift */; };
 		74DFF3F21F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3F11F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift */; };
+		74DFF3F41F2A6E330059E6C7 /* Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3F31F2A6E330059E6C7 /* Visualizer.swift */; };
+		74DFF3F81F2A701C0059E6C7 /* AKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3F71F2A701C0059E6C7 /* AKManager.swift */; };
+		74DFF3FA1F2A70950059E6C7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3F91F2A70950059E6C7 /* Configuration.swift */; };
+		74DFF3FC1F2A71C90059E6C7 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3FB1F2A71C90059E6C7 /* Shape.swift */; };
+		74DFF3FE1F2A7B1B0059E6C7 /* AidKit.png in Resources */ = {isa = PBXBuildFile; fileRef = 74DFF3FD1F2A7B1B0059E6C7 /* AidKit.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +56,11 @@
 		74DFF3E31F2A4FB40059E6C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74DFF3EF1F2A4FCE0059E6C7 /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
 		74DFF3F11F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+EventInterceptor.swift"; sourceTree = "<group>"; };
+		74DFF3F31F2A6E330059E6C7 /* Visualizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Visualizer.swift; sourceTree = "<group>"; };
+		74DFF3F71F2A701C0059E6C7 /* AKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKManager.swift; sourceTree = "<group>"; };
+		74DFF3F91F2A70950059E6C7 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		74DFF3FB1F2A71C90059E6C7 /* Shape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		74DFF3FD1F2A7B1B0059E6C7 /* AidKit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AidKit.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +111,12 @@
 		74DFF3C01F2A4FB40059E6C7 /* AidKit */ = {
 			isa = PBXGroup;
 			children = (
+				74DFF3FD1F2A7B1B0059E6C7 /* AidKit.png */,
+				74DFF3F91F2A70950059E6C7 /* Configuration.swift */,
+				74DFF3F71F2A701C0059E6C7 /* AKManager.swift */,
+				74DFF3F31F2A6E330059E6C7 /* Visualizer.swift */,
 				74DFF3EF1F2A4FCE0059E6C7 /* Recorder.swift */,
+				74DFF3FB1F2A71C90059E6C7 /* Shape.swift */,
 				74DFF3F11F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift */,
 				74DFF3C11F2A4FB40059E6C7 /* AppDelegate.swift */,
 				74DFF3C31F2A4FB40059E6C7 /* ViewController.swift */,
@@ -244,6 +259,7 @@
 				74DFF3CC1F2A4FB40059E6C7 /* LaunchScreen.storyboard in Resources */,
 				74DFF3C91F2A4FB40059E6C7 /* Assets.xcassets in Resources */,
 				74DFF3C71F2A4FB40059E6C7 /* Main.storyboard in Resources */,
+				74DFF3FE1F2A7B1B0059E6C7 /* AidKit.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,9 +285,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				74DFF3F21F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift in Sources */,
+				74DFF3F81F2A701C0059E6C7 /* AKManager.swift in Sources */,
+				74DFF3FA1F2A70950059E6C7 /* Configuration.swift in Sources */,
 				74DFF3F01F2A4FCE0059E6C7 /* Recorder.swift in Sources */,
+				74DFF3F41F2A6E330059E6C7 /* Visualizer.swift in Sources */,
 				74DFF3C41F2A4FB40059E6C7 /* ViewController.swift in Sources */,
 				74DFF3C21F2A4FB40059E6C7 /* AppDelegate.swift in Sources */,
+				74DFF3FC1F2A71C90059E6C7 /* Shape.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

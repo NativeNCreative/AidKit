@@ -35,7 +35,7 @@ extension UIWindow {
 
         switch event.type {
 
-        case .touches: break
+        case .touches: AKManager.sharedInstance.visualizer.handleEvent(event)
 
         case .motion:  break
 

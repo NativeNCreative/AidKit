@@ -11,10 +11,10 @@ import Foundation
 import Foundation
 import ReplayKit
 
-class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate {
+final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate {
 
     public var presentedViewController: UIViewController?
-
+    let recorder  = RPScreenRecorder.shared()
     // TODO: create another initializer with delegate as param
     override init() {
         super.init()
@@ -35,18 +35,17 @@ class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDele
                 // Recording started
             }
         })
-
     }
 
     func stopRecording() {
 
-        guard #available(iOS 10.0, *), !RPScreenRecorder.shared().isRecording else {
-            // TODO Log error
-            // Recording is not active
-            return
-        }
-
-        RPScreenRecorder.shared().stopRecording { [unowned self]  (preview, error) in
+        /*        guard #available(iOS 10.0, *), !RPScreenRecorder.shared().isRecording else {
+         // TODO Log error
+         // Recording is not active
+         return
+         }
+         */
+        recorder.stopRecording { [unowned self]  (preview, error) in
 
             if let preview = preview {
                 preview.previewControllerDelegate = self
@@ -61,15 +60,9 @@ class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDele
         if((presentedViewController) != nil) {
             return presentedViewController
         }
-        var topViewController: UIViewController? = nil
-
-        if let viewController = UIApplication.shared.keyWindow?.rootViewController {
-            while let viewController = viewController.presentedViewController {
-                topViewController = viewController
-            }
-        }
-        return topViewController
+        return UIApplication.shared.keyWindow?.rootViewController
     }
+
 
     public func screenRecorder(_ screenRecorder: RPScreenRecorder, didStopRecordingWithError error: Error, previewViewController: RPPreviewViewController?) {
         NSLog("Yaay -> No Errors ")
@@ -79,7 +72,7 @@ class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDele
         NSLog("Not Available")
     }
 
-    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
+    public func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         previewController.dismiss(animated: true)
     }
     
