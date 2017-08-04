@@ -1,0 +1,6 @@
+framework module AidKit {
+  umbrella header "AidKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

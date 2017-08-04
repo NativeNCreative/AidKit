@@ -1,0 +1,22 @@
+{
+  "name": "AidKit",
+  "version": "0.1.0",
+  "summary": "AidKit is a framework that makes it easy for anyone to create screen recordings of your app and share them. Just define a gesture and enable it for debug/release.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/NativeNCreative/AidKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "allgamesallfree&NativeNCreative": ""
+  },
+  "source": {
+    "git": "https://github.com/NativeNCreative/AidKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "AidKit/Classes/**/*"
+}
