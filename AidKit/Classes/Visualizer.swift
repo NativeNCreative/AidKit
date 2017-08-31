@@ -16,11 +16,11 @@ protocol TouchEventHandler {
     func touchEventEnded(_ touch: UITouch)
 }
 
-public class Visualizer : NSObject {
+public class Visualizer : NSObject, AKControllable {
 
     fileprivate var enabled = false
     fileprivate var shapes = [Shape]()
-    fileprivate var configuration: Configuration?
+    fileprivate var configuration: VisualizerConfiguration?
 
     let topWindow = UIApplication.shared.keyWindow
 
@@ -53,8 +53,12 @@ public class Visualizer : NSObject {
 
     // MARK: - Start and Stop functions
 
-    public func start(_ configuration: Configuration = Configuration({_ in})) {
+    func start(_ configuration: Configurable) {
+        guard configuration.isOn else {
+            return
+        }
 
+        self.configuration = configuration as? VisualizerConfiguration
         enabled = true
 
         if let window = topWindow {

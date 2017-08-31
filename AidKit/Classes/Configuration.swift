@@ -12,13 +12,35 @@ protocol ConfigurationProtocol {
     var image: UIImage? { get }
 }
 
-typealias buildConfigurationClosure = (Configuration) -> Void
+public typealias buildConfigurationClosure = (Configuration) -> Void
 
-final public class Configuration : ConfigurationProtocol {
+final public class Configuration  {
 
-    init(_ build:buildConfigurationClosure) {
+    public init(_ build:buildConfigurationClosure) {
         build(self)
     }
+
+    public let recorderConfiguration = RecorderConfiguration()
+    public let visualizerConfiguration = VisualizerConfiguration()
+    public let debuggerConfiguration = DebuggerConfiguration()
+    public let loggerConfiguration = LoggerConfiguration()
+
+}
+
+public protocol Configurable {
+    var isOn: Bool {get}
+    var name: String {get}
+}
+
+final public class RecorderConfiguration: Configurable {
+    public var name: String = "Recorder"
+    public var isOn: Bool = false
+}
+
+final public class VisualizerConfiguration: Configurable {
+
+    public var name: String = "Visualizer"
+    public var isOn: Bool = false
 
     static let defaultColor =  UIColor(red: 52.0/255.0, green: 152.0/255.0, blue: 219.0/255.0, alpha: 0.8)
 
@@ -40,5 +62,15 @@ final public class Configuration : ConfigurationProtocol {
 
 }
 
+final public class DebuggerConfiguration: Configurable {
 
+    public var name: String = "Debugger"
+    public var isOn: Bool = false
+}
+
+final public class LoggerConfiguration: Configurable {
+
+    public var name: String = "Logger"
+    public var isOn: Bool = false
+}
 

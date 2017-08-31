@@ -21,12 +21,12 @@ extension UIWindow {
 
         let sendEvent = class_getInstanceMethod(object_getClass(self), #selector(UIApplication.sendEvent(_:)))
         let swizzledSendEvent = class_getInstanceMethod(object_getClass(self), #selector(UIWindow.swizzledSendEvent(_:)))
-        method_exchangeImplementations(sendEvent, swizzledSendEvent)
+        method_exchangeImplementations(sendEvent!, swizzledSendEvent!)
 
         isSwizzled = true
     }
 
-    public func swizzledSendEvent(_ event: UIEvent) {
+    @objc public func swizzledSendEvent(_ event: UIEvent) {
         handle(event)
         swizzledSendEvent(event)
     }
@@ -42,8 +42,6 @@ extension UIWindow {
         case .presses: break
 
         case .remoteControl: break
-            
-        default: break
         }
     }
 }
