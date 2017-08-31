@@ -12,7 +12,7 @@ final public class Shape: UIView {
 
     // MARK: - Public Variables
     internal weak var touch: UITouch?
-    internal var configuration: Configuration
+    internal var configuration: VisualizerConfiguration
     private var size = CGSize(width: 60.0, height: 60.0)
 
 
@@ -22,7 +22,7 @@ final public class Shape: UIView {
 
     override init(frame: CGRect) {
 
-        configuration = Configuration({_ in })
+        configuration = Configuration({_ in }).visualizerConfiguration
 
         super.init(frame: frame)
 

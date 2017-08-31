@@ -11,7 +11,7 @@ import Foundation
 import Foundation
 import ReplayKit
 
-final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate {
+final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, AKControllable {
 
     public var presentedViewController: UIViewController?
     let recorder  = RPScreenRecorder.shared()
@@ -21,9 +21,9 @@ final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewC
         RPScreenRecorder.shared().delegate = self
     }
     // TODO: Create a callback block after start recording to report error or recording started successfully
-    func startRecording() {
+    func start(_ configuration: Configurable) {
 
-        guard #available(iOS 10.0, *), (RPScreenRecorder.shared().isAvailable) else {
+        guard #available(iOS 10.0, *), (RPScreenRecorder.shared().isAvailable), configuration.isOn else {
             // TODO Log error
             // Fallback on earlier versions
             return
@@ -37,7 +37,7 @@ final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewC
         })
     }
 
-    func stopRecording() {
+    func stop() {
 
         /*        guard #available(iOS 10.0, *), !RPScreenRecorder.shared().isRecording else {
          // TODO Log error

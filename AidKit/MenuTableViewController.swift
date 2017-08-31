@@ -27,6 +27,12 @@ final class MenuTableViewCell: UITableViewCell {
         isEnabledSwitch.translatesAutoresizingMaskIntoConstraints = false
         isEnabledSwitch.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         isEnabledSwitch.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+
+        isEnabledSwitch.addTarget(self, action: #selector(tappedSwitch(_:)), for: .valueChanged)
+    }
+
+    @objc func tappedSwitch(_ sender: UISwitch) {
+        data?.isOn = sender.isOn
     }
 
     func setup(with data: MenuCellData) {
@@ -37,20 +43,10 @@ final class MenuTableViewCell: UITableViewCell {
 
 }
 
-final class MenuCellData: SubMenuCellData {
-
-    let subItems: [SubMenuCellData]?
-
-    init(name: String, isOn: Bool, subItems: [SubMenuCellData]? = nil) {
-        self.subItems = subItems
-        super.init(name: name, isOn: isOn)
-    }
-}
-
-class SubMenuCellData {
+final class MenuCellData {
 
     let name: String
-    let isOn: Bool
+    var isOn: Bool
 
     init(name: String, isOn: Bool) {
         self.name = name
@@ -66,11 +62,7 @@ final class MenuTableViewController: UITableViewController {
 
     let items = [MenuCellData(name: "Recorder", isOn: true),
                       MenuCellData(name: "Visualizer", isOn: true),
-                      MenuCellData(name: "Debugger", isOn: false, subItems: [
-                        SubMenuCellData(name: "FPS", isOn: true),
-                        SubMenuCellData(name: "iOS Version", isOn: true),
-                        SubMenuCellData(name: "Device Type", isOn: true),
-                        ]),
+                      MenuCellData(name: "Debugger", isOn: false),
                       MenuCellData(name: "Logger", isOn: false)]
 
     override func viewDidLoad() {
@@ -78,7 +70,8 @@ final class MenuTableViewController: UITableViewController {
 
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         title = "Configuration"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeView))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(closeView))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Confirm", style: .done, target: self, action: #selector(startAidKit))
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,20 +86,22 @@ final class MenuTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = items.count
-        for item in items {
-            if let subItems = item.subItems, item.isOn {
-                count += subItems.count
-            }
-        }
-        return count
+        return items.count
     }
 
-    func updateDisplayedCells() {
-    }
-
-    func closeView() {
+    @objc func closeView() {
         dismiss(animated: true, completion: nil)
+    }
+
+    @objc func startAidKit() {
+        closeView()
+        let configuration = Configuration { (configuration) in
+            configuration.recorderConfiguration.isOn = items.filter{ $0.name == configuration.recorderConfiguration.name }.first?.isOn ?? false
+            configuration.visualizerConfiguration.isOn = items.filter{ $0.name == configuration.visualizerConfiguration.name }.first?.isOn ?? false
+            configuration.debuggerConfiguration.isOn = items.filter{ $0.name == configuration.debuggerConfiguration.name }.first?.isOn ?? false
+            configuration.loggerConfiguration.isOn = items.filter{ $0.name == configuration.loggerConfiguration.name }.first?.isOn ?? false
+        }
+        AKManager.sharedInstance.start(configuration)
     }
 
 }

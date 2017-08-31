@@ -8,16 +8,21 @@
 
 import UIKit
 
+protocol AKControllable {
+    func start(_ configuration: Configurable)
+    func stop()
+}
+
 final public class AKManager : NSObject {
 
     // MARK: - Public Variables
     static public let sharedInstance = AKManager()
 
-    fileprivate var configuration: Configuration?
+    fileprivate var configuration: Configuration = Configuration{_ in}
 
     public let visualizer: Visualizer =  Visualizer()
-
     public let recorder: Recorder =  Recorder()
+    public let debugger: Debugger =  Debugger()
 
     // MARK: - Object life cycle
     private override init() {
@@ -32,19 +37,21 @@ final public class AKManager : NSObject {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: - Helper Functions
+    // MARK: - Helper Functioxns
     @objc internal func applicationDidBecomeActiveNotification(_ notification: Notification) {
         UIApplication.shared.keyWindow?.swizzler()
     }
 
-    public func start(_ configuration: Configuration = Configuration({_ in})) {
-        visualizer.start()
-        recorder.startRecording()
+    public func start(_ configuration: Configuration? = nil) {
+        self.configuration = configuration ?? self.configuration
+        visualizer.start(self.configuration.visualizerConfiguration)
+        recorder.start(self.configuration.recorderConfiguration)
+        debugger.start(self.configuration.debuggerConfiguration)
     }
     
     public func stop() {
         visualizer.stop()
-        recorder.stopRecording()
+        recorder.stop()
 
     }
 }

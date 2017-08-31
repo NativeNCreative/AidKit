@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A8203CC1F2F9A6E008F9133 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8203CB1F2F9A6E008F9133 /* MenuTableViewController.swift */; };
+		0AA436581F589EFE0040935E /* Debugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA436571F589EFE0040935E /* Debugger.swift */; };
 		74DFF3C21F2A4FB40059E6C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3C11F2A4FB40059E6C7 /* AppDelegate.swift */; };
 		74DFF3C41F2A4FB40059E6C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DFF3C31F2A4FB40059E6C7 /* ViewController.swift */; };
 		74DFF3C71F2A4FB40059E6C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74DFF3C51F2A4FB40059E6C7 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		0A8203CB1F2F9A6E008F9133 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		0AA436571F589EFE0040935E /* Debugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debugger.swift; sourceTree = "<group>"; };
 		74DFF3BE1F2A4FB40059E6C7 /* AidKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AidKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74DFF3C11F2A4FB40059E6C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74DFF3C31F2A4FB40059E6C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				74DFF3F91F2A70950059E6C7 /* Configuration.swift */,
 				74DFF3F71F2A701C0059E6C7 /* AKManager.swift */,
 				74DFF3F31F2A6E330059E6C7 /* Visualizer.swift */,
+				0AA436571F589EFE0040935E /* Debugger.swift */,
 				74DFF3EF1F2A4FCE0059E6C7 /* Recorder.swift */,
 				74DFF3FB1F2A71C90059E6C7 /* Shape.swift */,
 				74DFF3F11F2A6B870059E6C7 /* UIWindow+EventInterceptor.swift */,
@@ -217,18 +220,21 @@
 				TargetAttributes = {
 					74DFF3BD1F2A4FB40059E6C7 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = WX8P85V54A;
+						DevelopmentTeam = 5WD9C99DFM;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					74DFF3D11F2A4FB40059E6C7 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = WX8P85V54A;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 74DFF3BD1F2A4FB40059E6C7;
 					};
 					74DFF3DC1F2A4FB40059E6C7 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = WX8P85V54A;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 74DFF3BD1F2A4FB40059E6C7;
 					};
@@ -292,6 +298,7 @@
 				74DFF3FA1F2A70950059E6C7 /* Configuration.swift in Sources */,
 				74DFF3F01F2A4FCE0059E6C7 /* Recorder.swift in Sources */,
 				74DFF3F41F2A6E330059E6C7 /* Visualizer.swift in Sources */,
+				0AA436581F589EFE0040935E /* Debugger.swift in Sources */,
 				0A8203CC1F2F9A6E008F9133 /* MenuTableViewController.swift in Sources */,
 				74DFF3C41F2A4FB40059E6C7 /* ViewController.swift in Sources */,
 				74DFF3C21F2A4FB40059E6C7 /* AppDelegate.swift in Sources */,
@@ -449,12 +456,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WX8P85V54A;
+				DEVELOPMENT_TEAM = 5WD9C99DFM;
 				INFOPLIST_FILE = AidKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NativeNCreative.AidKit.AidKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -462,12 +471,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = WX8P85V54A;
+				DEVELOPMENT_TEAM = 5WD9C99DFM;
 				INFOPLIST_FILE = AidKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NativeNCreative.AidKit.AidKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -481,7 +492,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NativeNCreative.AidKit.AidKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AidKit.app/AidKit";
 			};
 			name = Debug;
@@ -496,7 +508,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NativeNCreative.AidKit.AidKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AidKit.app/AidKit";
 			};
 			name = Release;
@@ -510,7 +523,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NativeNCreative.AidKit.AidKitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = AidKit;
 			};
 			name = Debug;
@@ -524,7 +538,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.NativeNCreative.AidKit.AidKitUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = AidKit;
 			};
 			name = Release;
