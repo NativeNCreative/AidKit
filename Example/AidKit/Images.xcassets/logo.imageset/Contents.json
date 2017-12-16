@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "AidKit.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "SplashScreen.png",
       "scale" : "2x"
     },
     {

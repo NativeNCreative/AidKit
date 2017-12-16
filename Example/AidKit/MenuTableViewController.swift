@@ -14,7 +14,7 @@ fileprivate let reuseIdentifier = String(describing: MenuTableViewCell.self)
 final class MenuTableViewCell: UITableViewCell {
 
     let isEnabledSwitch = UISwitch()
-    var data: MenuCellData?
+    var identifier: ComponentId?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,25 +33,20 @@ final class MenuTableViewCell: UITableViewCell {
     }
 
     @objc func tappedSwitch(_ sender: UISwitch) {
-        data?.isOn = sender.isOn
+        // 2. Configure it
+        if let identifier = identifier,
+            let component = AKManager.shared.componentFor(identifier),
+            var configurable = component.configurable {
+            configurable.isOn = sender.isOn
+            AKManager.shared.setConfiguration(configurable, identifier)
+        }
     }
 
-    func setup(with data: MenuCellData) {
-        textLabel?.text = data.name
-        isEnabledSwitch.isOn = data.isOn
-        self.data = data
-    }
-
-}
-
-final class MenuCellData {
-
-    let name: String
-    var isOn: Bool
-
-    init(name: String, isOn: Bool) {
-        self.name = name
-        self.isOn = isOn
+    func setup(with identifier: ComponentId) {
+        textLabel?.text = identifier.rawValue
+            self.identifier = identifier
+            let configuration = AKManager.shared.configuration(identifier)
+            isEnabledSwitch.isOn = configuration?.isOn ?? false
     }
 }
 
@@ -61,13 +56,12 @@ protocol MenuCellToggled {
 
 final class MenuTableViewController: UITableViewController {
 
-    let items = [MenuCellData(name: "Recorder", isOn: true),
-                      MenuCellData(name: "Visualizer", isOn: true),
-                      MenuCellData(name: "Debugger", isOn: false),
-                      MenuCellData(name: "Logger", isOn: false)]
+    let items = [ComponentId.recorder, ComponentId.visualizer, ComponentId.debugger]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 1. Register your components
+        AKManager.shared.registerNativeComponents()
 
         tableView.register(MenuTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         title = "Configuration"
@@ -96,13 +90,9 @@ final class MenuTableViewController: UITableViewController {
 
     @objc func startAidKit() {
         closeView()
-        let configuration = Configuration { (configuration) in
-            configuration.recorderConfiguration.isOn = items.filter{ $0.name == configuration.recorderConfiguration.name }.first?.isOn ?? false
-            configuration.visualizerConfiguration.isOn = items.filter{ $0.name == configuration.visualizerConfiguration.name }.first?.isOn ?? false
-            configuration.debuggerConfiguration.isOn = items.filter{ $0.name == configuration.debuggerConfiguration.name }.first?.isOn ?? false
-            configuration.loggerConfiguration.isOn = items.filter{ $0.name == configuration.loggerConfiguration.name }.first?.isOn ?? false
-        }
-        AKManager.sharedInstance.start(configuration)
+
+        // 3. Start AidKit Debugging
+        AKManager.shared.start()
     }
 
 }

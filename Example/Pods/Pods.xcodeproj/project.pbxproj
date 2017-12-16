@@ -19,7 +19,6 @@
 		94FA692D894135B39EC1BC77398C41F0 /* Pods-AidKit_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 845941801DC888ED5CF171426ECBC008 /* Pods-AidKit_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A053BA4DF3FF87916E20DC761DC54C4B /* Pods-AidKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DDA0A450277DA49E665CD12A10357D1 /* Pods-AidKit_Example-dummy.m */; };
 		A7790D372400843588F2ABC78AFA0442 /* Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89693E677DFC859627B7C6B076E148EA /* Visualizer.swift */; };
-		AF0F88495D6B91CD61DE82052AD68DE6 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7733A91F55AB39623552BBD753BD8A29 /* Configuration.swift */; };
 		C2C3CF2468D639C4B85F23AA8C15339C /* AidKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 514B123ACA4F41949CB4B0B27DD61872 /* AidKit-dummy.m */; };
 		CED9125C84BE6B3B420C4E2A2C01E9A8 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939B2417BC242CA47212ED594A43D5EA /* Shape.swift */; };
 		D0FF0112E958CF7FA960DB34D6193E66 /* AidKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 299F512D2A7A8F72FABDC8E3F6F24064 /* AidKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,7 +55,6 @@
 		6194B3A5A76539E044AB080E4F4A8F28 /* Pods_AidKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AidKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		75DA8D0B4A13414E696B894F6A40889D /* Pods-AidKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AidKit_Example-umbrella.h"; sourceTree = "<group>"; };
-		7733A91F55AB39623552BBD753BD8A29 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = AidKit/Classes/Configuration.swift; sourceTree = "<group>"; };
 		797BE40184CE004E21AE1D6F4529A5E1 /* Recorder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Recorder.swift; path = AidKit/Classes/Recorder.swift; sourceTree = "<group>"; };
 		7F544536E20AF48E1D5BEBCD56725F13 /* Pods-AidKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AidKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		823B82BA45EBB8A7AB4BA8ACD653744C /* AKManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AKManager.swift; path = AidKit/Classes/AKManager.swift; sourceTree = "<group>"; };
@@ -152,12 +150,11 @@
 			isa = PBXGroup;
 			children = (
 				823B82BA45EBB8A7AB4BA8ACD653744C /* AKManager.swift */,
-				7733A91F55AB39623552BBD753BD8A29 /* Configuration.swift */,
+				E710371E8CDCABC0635ECF24B189D890 /* UIWindow+EventInterceptor.swift */,
 				0AF97F801F58AAE500793F61 /* Debugger.swift */,
 				797BE40184CE004E21AE1D6F4529A5E1 /* Recorder.swift */,
-				939B2417BC242CA47212ED594A43D5EA /* Shape.swift */,
-				E710371E8CDCABC0635ECF24B189D890 /* UIWindow+EventInterceptor.swift */,
 				89693E677DFC859627B7C6B076E148EA /* Visualizer.swift */,
+				939B2417BC242CA47212ED594A43D5EA /* Shape.swift */,
 				6052CA10E68988852B98107DD132ED51 /* Support Files */,
 			);
 			name = AidKit;
@@ -346,7 +343,6 @@
 			files = (
 				C2C3CF2468D639C4B85F23AA8C15339C /* AidKit-dummy.m in Sources */,
 				6A3D7563FBC2162922DE971E26B4F0D1 /* AKManager.swift in Sources */,
-				AF0F88495D6B91CD61DE82052AD68DE6 /* Configuration.swift in Sources */,
 				6C3F02F52F6BB25941553B238C3630CC /* Recorder.swift in Sources */,
 				CED9125C84BE6B3B420C4E2A2C01E9A8 /* Shape.swift in Sources */,
 				5B643E4E3655FE8DEA6CB2AD7636083D /* UIWindow+EventInterceptor.swift in Sources */,

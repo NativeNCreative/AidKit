@@ -29,13 +29,12 @@ class ViewController: UIViewController {
     }
 
     @IBAction func start(sender: UIButton) {
-
-        AKManager.sharedInstance.start()
+        AKManager.shared.start()
         recording.isHidden = false
     }
 
     @IBAction func stop(sender: UIButton) {
-        AKManager.sharedInstance.stop()
+        AKManager.shared.stop()
         recording.isHidden = true
     }
 }

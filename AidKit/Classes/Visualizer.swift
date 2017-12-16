@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Visualizer touch events life cycle
 protocol TouchEventHandler {
     func touchEventBegin(_ touch: UITouch)
     func touchEventMoved(_ touch: UITouch)
@@ -16,15 +17,41 @@ protocol TouchEventHandler {
     func touchEventEnded(_ touch: UITouch)
 }
 
-public class Visualizer : NSObject, AKControllable {
+final public class VisualizerConfiguration: Configurable {
+
+    public var name: String = "Visualizer"
+    public var isOn: Bool = false
+
+    static let defaultColor = UIColor(red: 52.0/255.0, green: 152.0/255.0, blue: 219.0/255.0, alpha: 0.8)
+
+    public var color: UIColor? = defaultColor
+
+    public var image: UIImage? = {
+
+        let rect = CGRect(x: 0.0, y: 0.0, width: 60.0, height: 60.0)
+
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        let contextRef = UIGraphicsGetCurrentContext()
+        contextRef?.setFillColor(defaultColor.cgColor)
+        contextRef?.fillEllipse(in: rect)
+        var image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return image?.withRenderingMode(.alwaysTemplate)
+    }()
+
+}
+public class Visualizer : NSObject, Controllable {
+
+    public var configuration: Configurable?
 
     fileprivate var enabled = false
     fileprivate var shapes = [Shape]()
-    fileprivate var configuration: VisualizerConfiguration?
 
     let topWindow = UIApplication.shared.keyWindow
 
-    override init() {
+    public required override init() {
+        self.configuration = VisualizerConfiguration()
         super.init()
         NotificationCenter
             .default
@@ -53,12 +80,12 @@ public class Visualizer : NSObject, AKControllable {
 
     // MARK: - Start and Stop functions
 
-    func start(_ configuration: Configurable) {
-        guard configuration.isOn else {
+    public func start() {
+        guard let configuration = configuration, configuration.isOn else {
             return
         }
 
-        self.configuration = configuration as? VisualizerConfiguration
+        self.configuration = configuration 
         enabled = true
 
         if let window = topWindow {
@@ -80,37 +107,33 @@ public class Visualizer : NSObject, AKControllable {
 extension Visualizer : TouchEventHandler {
 
     open func handleEvent(_ event: UIEvent) {
-
-        if !enabled {
+        
+        guard enabled else {
             return
         }
 
         for touch in event.allTouches! {
             let phase = touch.phase
-
             switch phase {
             case .began:
                 touchEventBegin(touch)
-
             case .moved:
                 touchEventMoved(touch)
-
             case .stationary:
                 touchEventStationary(touch)
-
             case .ended, .cancelled:
                 touchEventEnded(touch)
             }
         }
     }
 
-    // MARK: Touch Event Handler
+    // MARK: - Touch events life cycle
     func touchEventBegin(_ touch: UITouch) {
 
         let view = dequeueTouchView()
 
         if let configuration = configuration {
-            view.configuration = configuration
+            view.configuration = configuration as? VisualizerConfiguration
         }
         view.touch = touch
         view.beginTouch()
@@ -154,8 +177,7 @@ extension Visualizer : TouchEventHandler {
         }
     }
 
-
-    // MARK: Commands
+    // MARK: - Commands
     public func getTouches() -> [UITouch] {
 
         var touches: [UITouch] = []
@@ -177,7 +199,7 @@ extension Visualizer : TouchEventHandler {
         }
 
         if touchView == nil {
-            touchView = Shape()
+            touchView = Shape(configuration as? VisualizerConfiguration ?? VisualizerConfiguration())
             shapes.append(touchView!)
         }
         
@@ -190,7 +212,6 @@ extension Visualizer : TouchEventHandler {
                 return view
             }
         }
-        
         return nil
     }
 }

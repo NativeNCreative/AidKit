@@ -35,8 +35,10 @@ extension UIWindow {
 
         switch event.type {
 
-        case .touches: AKManager.sharedInstance.visualizer.handleEvent(event)
-
+        case .touches:
+            if let visualizer = AKManager.shared.controllableFor(ComponentId.visualizer) as? Visualizer {
+                visualizer.handleEvent(event)
+            }
         case .motion:  break
 
         case .presses: break

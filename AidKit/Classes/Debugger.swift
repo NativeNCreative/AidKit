@@ -8,25 +8,27 @@
 
 import UIKit
 
-final public class Debugger: AKControllable {
+final public class DebuggerConfiguration: Configurable {
 
-    func start(_ configuration: Configurable) {
-        guard configuration.isOn else {
-            return
-        }
-        print(systemName + " " + version + " Device Type: " + model)
-    }
+    public var name: String = "Debugger"
+    public var isOn: Bool = false
+}
 
-    func stop() {
-
-    }
-
+final public class Debugger: Controllable {
+    public var configuration: Configurable?
 
     let deviceName = UIDevice.current.name
     let version = UIDevice.current.systemVersion
     let systemName = UIDevice.current.systemName
     let model = UIDevice.current.model
 
+    public func start() {
+        guard let configuration = configuration, configuration.isOn else {
+            return
+        }
+        print(systemName + " " + version + " Device Type: " + model)
+    }
+    public func stop() {
 
-
+    }
 }

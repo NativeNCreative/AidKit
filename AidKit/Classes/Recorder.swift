@@ -7,23 +7,29 @@
 //
 
 import Foundation
-
-import Foundation
 import ReplayKit
 
-final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, AKControllable {
+final public class RecorderConfiguration: Configurable {
+    public var name: String = "Recorder"
+    public var isOn: Bool = false
+}
+
+final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, Controllable {
 
     public var presentedViewController: UIViewController?
+    public var configuration: Configurable?
+
     let recorder  = RPScreenRecorder.shared()
-    // TODO: create another initializer with delegate as param
-    override init() {
+
+    public override init() {
         super.init()
         RPScreenRecorder.shared().delegate = self
     }
-    // TODO: Create a callback block after start recording to report error or recording started successfully
-    func start(_ configuration: Configurable) {
 
-        guard #available(iOS 10.0, *), (RPScreenRecorder.shared().isAvailable), configuration.isOn else {
+    // TODO: Create a callback block after start recording to report error or recording started successfully
+    public func start() {
+
+        guard #available(iOS 10.0, *), (RPScreenRecorder.shared().isAvailable), let configuration = configuration, configuration.isOn else {
             // TODO Log error
             // Fallback on earlier versions
             return
@@ -31,22 +37,14 @@ final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewC
 
         RPScreenRecorder.shared().startRecording(handler: {(error: Error?) in
             if error == nil {
-                NSLog("Yaay -> No Errors ")
                 // Recording started
+                NSLog("Recording started")
             }
         })
     }
 
-    func stop() {
-
-        /*        guard #available(iOS 10.0, *), !RPScreenRecorder.shared().isRecording else {
-         // TODO Log error
-         // Recording is not active
-         return
-         }
-         */
+    public func stop() {
         recorder.stopRecording { [unowned self]  (preview, error) in
-
             if let preview = preview {
                 preview.previewControllerDelegate = self
                 if let presentedViewController = self.previewController() {
@@ -63,17 +61,15 @@ final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewC
         return UIApplication.shared.keyWindow?.rootViewController
     }
 
-
     public func screenRecorder(_ screenRecorder: RPScreenRecorder, didStopRecordingWithError error: Error, previewViewController: RPPreviewViewController?) {
-        NSLog("Yaay -> No Errors ")
+        NSLog("Recording stopped")
     }
 
     public func screenRecorderDidChangeAvailability(_ screenRecorder: RPScreenRecorder) {
-        NSLog("Not Available")
+        NSLog("Screen recorder is not available")
     }
 
     public func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         previewController.dismiss(animated: true)
     }
-    
 }

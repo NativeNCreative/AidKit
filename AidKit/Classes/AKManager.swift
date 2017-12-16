@@ -8,26 +8,48 @@
 
 import UIKit
 
-protocol AKControllable {
-    func start(_ configuration: Configurable)
+/// Native component identifier
+public enum ComponentId: String {
+    case recorder = "recorder"
+    case visualizer = "visualizer"
+    case debugger = "debugger"
+}
+
+/// Component class managed by AKManager
+public class Component {
+   public var controllable: Controllable?
+   public var configurable: Configurable?
+
+    public init(controllable: Controllable, configurable: Configurable) {
+        self.controllable = controllable
+        self.configurable = configurable
+    }
+}
+
+/// Controllable protocol for controlling the components managed by AKManager
+public protocol Controllable {
+    var configuration: Configurable? {set get}
+    func start()
     func stop()
 }
 
+/// Configurable protocol for components configuration
+public protocol Configurable {
+    var isOn: Bool {set get}
+    var name: String {set get}
+}
+
+/// AKManager is a singleton class for managing the debugging tools
 final public class AKManager : NSObject {
 
     // MARK: - Public Variables
-    static public let sharedInstance = AKManager()
+    static public let shared = AKManager()
 
-    fileprivate var configuration: Configuration = Configuration{_ in}
-
-    public let visualizer: Visualizer =  Visualizer()
-    public let recorder: Recorder =  Recorder()
-    public let debugger: Debugger =  Debugger()
+    fileprivate var components: [ComponentId : Component] = [ComponentId : Component]()
 
     // MARK: - Object life cycle
     private override init() {
         super.init()
-
         NotificationCenter
             .default
             .addObserver(self, selector: #selector(AKManager.applicationDidBecomeActiveNotification(_:)), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
@@ -37,21 +59,57 @@ final public class AKManager : NSObject {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // MARK: - Helper Functioxns
+    public func registerComponent(_ component: Component, _ identifier: ComponentId){
+        components[identifier] = component
+    }
+
+    public func controllableFor(_ identifier: ComponentId) -> Controllable? {
+        if let component = components[identifier] {
+            return component.controllable
+        }
+        return nil
+    }
+
+    public func setConfiguration(_ configuration: Configurable, _ identifier: ComponentId) {
+        if let component: Component = components[identifier] {
+            component.configurable = configuration
+        }
+    }
+
+    public func configuration( _ identifier: ComponentId) -> Configurable? {
+        if let component: Component = components[identifier] {
+            return component.configurable
+        }
+        return nil
+    }
+
+    public func componentFor(_ identifier: ComponentId) -> Component? {
+        return components[identifier]
+    }
+
+    public func start() {
+        for component in components.values {
+            if let configuration = component.configurable  {
+                component.controllable?.configuration = configuration 
+            }
+            component.controllable?.start()
+        }
+    }
+
+    public func stop() {
+        for component in components.values {
+            component.controllable?.stop()
+        }
+    }
+
+    // MARK: - Helper Functions
     @objc internal func applicationDidBecomeActiveNotification(_ notification: Notification) {
         UIApplication.shared.keyWindow?.swizzler()
     }
 
-    public func start(_ configuration: Configuration? = nil) {
-        self.configuration = configuration ?? self.configuration
-        visualizer.start(self.configuration.visualizerConfiguration)
-        recorder.start(self.configuration.recorderConfiguration)
-        debugger.start(self.configuration.debuggerConfiguration)
-    }
-    
-    public func stop() {
-        visualizer.stop()
-        recorder.stop()
-
+    public func registerNativeComponents(){
+        registerComponent(Component(controllable: Visualizer(),configurable: VisualizerConfiguration()), ComponentId.visualizer)
+        registerComponent(Component(controllable: Recorder(),configurable: RecorderConfiguration()), ComponentId.recorder)
+        registerComponent(Component(controllable: Debugger(),configurable: DebuggerConfiguration()), ComponentId.recorder)
     }
 }
