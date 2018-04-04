@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/AidKit.svg?style=flat)](http://cocoapods.org/pods/AidKit)
 [![Platform](https://img.shields.io/cocoapods/p/AidKit.svg?style=flat)](http://cocoapods.org/pods/AidKit)
 
+AidKit is a combination of debugging tools that gives you in-app screen recording, enhanced system logging, and crash reporting without exiting your app.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
