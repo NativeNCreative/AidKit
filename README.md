@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/AidKit.svg?style=flat)](http://cocoapods.org/pods/AidKit)
 [![Platform](https://img.shields.io/cocoapods/p/AidKit.svg?style=flat)](http://cocoapods.org/pods/AidKit)
 
+<img src="https://i.imgur.com/KodUeky.png" />
+
 AidKit is a combination of debugging tools that gives you in-app screen recording, enhanced system logging, and crash reporting without exiting your app.
 
 ## Example
