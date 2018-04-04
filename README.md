@@ -9,11 +9,17 @@
 
 AidKit is a combination of debugging tools that gives you in-app screen recording, enhanced system logging, and crash reporting without exiting your app.
 
+## Notes
+
+AidKit is still under active development, currently it supports the Recorder and Visualizer.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+iOS 10+, Swift 4.0
 
 ## Installation
 
