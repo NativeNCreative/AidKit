@@ -22,7 +22,7 @@ final public class VisualizerConfiguration: Configurable {
     public var name: String = "Visualizer"
     public var isOn: Bool = false
 
-    static let defaultColor = UIColor(red: 52.0/255.0, green: 152.0/255.0, blue: 219.0/255.0, alpha: 0.8)
+    static let defaultColor = UIColor(red: 52.0 / 255.0, green: 152.0 / 255.0, blue: 219.0 / 255.0, alpha: 0.8)
 
     public var color: UIColor? = defaultColor
 
@@ -41,7 +41,7 @@ final public class VisualizerConfiguration: Configurable {
     }()
 
 }
-public class Visualizer : NSObject, Controllable {
+public class Visualizer: NSObject, Controllable {
 
     public var configuration: Configurable?
 
@@ -85,7 +85,7 @@ public class Visualizer : NSObject, Controllable {
             return
         }
 
-        self.configuration = configuration 
+        self.configuration = configuration
         enabled = true
 
         if let window = topWindow {
@@ -107,7 +107,7 @@ public class Visualizer : NSObject, Controllable {
 extension Visualizer : TouchEventHandler {
 
     open func handleEvent(_ event: UIEvent) {
-        
+
         guard enabled else {
             return
         }
@@ -159,7 +159,7 @@ extension Visualizer : TouchEventHandler {
             UIView.animate(withDuration: 0.2, delay: 0.0, options: .allowUserInteraction, animations: { () -> Void  in
                 view.alpha = 0.0
                 view.endTouch()
-            }, completion: {(finished) -> Void in
+            }, completion: {(_) -> Void in
                 view.removeFromSuperview()
             })
         }
@@ -171,7 +171,7 @@ extension Visualizer : TouchEventHandler {
             UIView.animate(withDuration: 0.2, delay: 0.0, options: .allowUserInteraction, animations: { () -> Void  in
                 view.alpha = 0.0
                 view.endTouch()
-            }, completion: {(finished) -> Void in
+            }, completion: {(_) -> Void in
                 view.removeFromSuperview()
             })
         }
@@ -202,10 +202,10 @@ extension Visualizer : TouchEventHandler {
             touchView = Shape(configuration as? VisualizerConfiguration ?? VisualizerConfiguration())
             shapes.append(touchView!)
         }
-        
+
         return touchView!
     }
-    
+
     private func findTouchView(_ touch: UITouch) -> Shape? {
         for view in shapes {
             if touch == view.touch {

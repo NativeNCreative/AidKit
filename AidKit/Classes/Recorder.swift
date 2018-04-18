@@ -14,12 +14,12 @@ final public class RecorderConfiguration: Configurable {
     public var isOn: Bool = false
 }
 
-final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, Controllable {
+final public class Recorder: NSObject, RPScreenRecorderDelegate, RPPreviewViewControllerDelegate, Controllable {
 
     public var presentedViewController: UIViewController?
     public var configuration: Configurable?
 
-    let recorder  = RPScreenRecorder.shared()
+    let recorder = RPScreenRecorder.shared()
 
     public override init() {
         super.init()
@@ -44,7 +44,7 @@ final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewC
     }
 
     public func stop() {
-        recorder.stopRecording { [unowned self]  (preview, error) in
+        recorder.stopRecording { [unowned self]  (preview, _) in
             if let preview = preview {
                 preview.previewControllerDelegate = self
                 if let presentedViewController = self.previewController() {
@@ -54,7 +54,7 @@ final public class Recorder : NSObject, RPScreenRecorderDelegate, RPPreviewViewC
         }
     }
 
-    func previewController() -> UIViewController?{
+    func previewController() -> UIViewController? {
         if((presentedViewController) != nil) {
             return presentedViewController
         }

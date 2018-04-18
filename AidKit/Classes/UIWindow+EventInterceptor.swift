@@ -8,20 +8,20 @@
 
 import UIKit
 
-fileprivate var isSwizzled = false
+private var isSwizzled = false
 
 @available(iOS 8.0, *)
 extension UIWindow {
 
-    public func swizzler() {
+    @objc public func swizzler() {
 
-        guard !isSwizzled else {
-            return
+        guard let sendEvent = class_getInstanceMethod(object_getClass(self), #selector(UIApplication.sendEvent(_:))),
+            let swizzledSendEvent = class_getInstanceMethod(object_getClass(self), #selector(UIWindow.swizzledSendEvent(_:))),
+            !isSwizzled else {
+                return
         }
 
-        let sendEvent = class_getInstanceMethod(object_getClass(self), #selector(UIApplication.sendEvent(_:)))
-        let swizzledSendEvent = class_getInstanceMethod(object_getClass(self), #selector(UIWindow.swizzledSendEvent(_:)))
-        method_exchangeImplementations(sendEvent!, swizzledSendEvent!)
+        method_exchangeImplementations(sendEvent, swizzledSendEvent)
 
         isSwizzled = true
     }
@@ -47,5 +47,3 @@ extension UIWindow {
         }
     }
 }
-
-

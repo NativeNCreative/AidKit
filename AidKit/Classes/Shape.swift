@@ -23,8 +23,8 @@ final public class Shape: UIView {
         super.init(frame: frame)
         self.configuration = config
         self.backgroundColor = configuration?.color
-        self.layer.cornerRadius = 30;
-        self.layer.masksToBounds = true;
+        self.layer.cornerRadius = 30
+        self.layer.masksToBounds = true
         self.tintColor = configuration?.color
         self.frame = CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: size)
     }

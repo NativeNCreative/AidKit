@@ -27,25 +27,25 @@ public class Component {
 }
 
 /// Controllable protocol for controlling the components managed by AKManager
-public protocol Controllable {
-    var configuration: Configurable? {set get}
+public protocol Controllable: class {
+    var configuration: Configurable? { get set }
     func start()
     func stop()
 }
 
 /// Configurable protocol for components configuration
 public protocol Configurable {
-    var isOn: Bool {set get}
-    var name: String {set get}
+    var isOn: Bool { get set }
+    var name: String { get set }
 }
 
 /// AKManager is a singleton class for managing the debugging tools
-final public class AKManager : NSObject {
+final public class AKManager: NSObject {
 
     // MARK: - Public Variables
-    static public let shared = AKManager()
+    @objc static public let shared = AKManager()
 
-    fileprivate var components: [ComponentId : Component] = [ComponentId : Component]()
+    fileprivate var components: [ComponentId : Component] = [ComponentId: Component]()
 
     // MARK: - Object life cycle
     private override init() {
@@ -59,7 +59,7 @@ final public class AKManager : NSObject {
         NotificationCenter.default.removeObserver(self)
     }
 
-    public func registerComponent(_ component: Component, _ identifier: ComponentId){
+    public func registerComponent(_ component: Component, _ identifier: ComponentId) {
         components[identifier] = component
     }
 
@@ -87,16 +87,16 @@ final public class AKManager : NSObject {
         return components[identifier]
     }
 
-    public func start() {
+    @objc public func start() {
         for component in components.values {
-            if let configuration = component.configurable  {
-                component.controllable?.configuration = configuration 
+            if let configuration = component.configurable {
+                component.controllable?.configuration = configuration
             }
             component.controllable?.start()
         }
     }
 
-    public func stop() {
+    @objc public func stop() {
         for component in components.values {
             component.controllable?.stop()
         }
@@ -107,9 +107,9 @@ final public class AKManager : NSObject {
         UIApplication.shared.keyWindow?.swizzler()
     }
 
-    public func registerNativeComponents(){
-        registerComponent(Component(controllable: Visualizer(),configurable: VisualizerConfiguration()), ComponentId.visualizer)
-        registerComponent(Component(controllable: Recorder(),configurable: RecorderConfiguration()), ComponentId.recorder)
-        registerComponent(Component(controllable: Debugger(),configurable: DebuggerConfiguration()), ComponentId.recorder)
+    public func registerNativeComponents() {
+        registerComponent(Component(controllable: Visualizer(), configurable: VisualizerConfiguration()), ComponentId.visualizer)
+        registerComponent(Component(controllable: Recorder(), configurable: RecorderConfiguration()), ComponentId.recorder)
+        registerComponent(Component(controllable: Debugger(), configurable: DebuggerConfiguration()), ComponentId.debugger)
     }
 }
